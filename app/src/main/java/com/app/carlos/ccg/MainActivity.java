@@ -66,15 +66,15 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_sobreCamelo) {
             setTitle("Sobre o Camelódromo");
-            startActivity(new Intent( MainActivity.this, SobreCameloFragment.class));
+            startActivity(new Intent( MainActivity.this, SobreCamelo.class));
 
         } else if (id == R.id.nav_sugestao) {
             setTitle("Sugestão");
-            startActivity(new Intent( MainActivity.this, SugestaoFragment.class));
+            startActivity(new Intent( MainActivity.this, Sugestao.class));
 
         } else if (id == R.id.nav_sobreApp) {
             setTitle("Sobre o App");
-            startActivity(new Intent( MainActivity.this, SobreAppFragment.class));
+            startActivity(new Intent( MainActivity.this, SobreApp.class));
         }
 
 
