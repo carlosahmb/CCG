@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+<item android:title="Conta">
+    <menu>
+
+        <item
+            android:id="@+id/nav_logar"
+            android:icon="@drawable/icons8mostrar48"
+            android:title="Logar" />
+    </menu>
+</item>
+<group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sobreCamelo"
+            android:icon="@drawable/icons8empresa"
+            android:title="Sobre o Camelódromo" />
+        <item
+            android:id="@+id/nav_sugestao"
+            android:icon="@drawable/icons8sugestao"
+            android:title="Sugestão" />
+        <item
+            android:id="@+id/nav_sobreApp"
+            android:icon="@drawable/icons8sobre"
+            android:title="Sobre App" />
+    </group>
+
+
+
+</menu>
