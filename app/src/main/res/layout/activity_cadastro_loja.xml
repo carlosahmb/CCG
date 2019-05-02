@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CadastroLoja">
+
+    <include
+        android:id="@+id/includecadastro"
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="53dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:src="@drawable/voltar"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:rippleColor="@color/common_google_signin_btn_text_light_pressed"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="10dp"
+        android:layout_gravity="end|bottom"
+        app:maxImageSize="35dp"/>
+
+    <LinearLayout
+        android:layout_width="392dp"
+        android:layout_height="708dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="68dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/inserirLoja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nome da Loja"
+            android:inputType="textPersonName"
+            app:met_floatingLabel="normal"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="73dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/inserirBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="BOX"
+            android:inputType="number"
+            app:met_floatingLabel="normal"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="138dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/inserirTelWhats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Telefone WhatsApp"
+            android:inputType="phone"
+            app:met_floatingLabel="normal"
+            tools:layout_editor_absoluteX="98dp"
+            tools:layout_editor_absoluteY="209dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/inserirTelFixo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Telefone Fixo"
+            android:inputType="phone"
+            app:met_floatingLabel="normal"
+            tools:layout_editor_absoluteX="97dp"
+            tools:layout_editor_absoluteY="274dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/inserirReferencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ponto de Referência"
+            android:inputType="textPersonName"
+            app:met_floatingLabel="normal"
+            tools:layout_editor_absoluteX="65dp"
+            tools:layout_editor_absoluteY="358dp" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/inserirInstagram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Instagram"
+            android:inputType="textPersonName"
+            app:met_floatingLabel="normal"
+            tools:layout_editor_absoluteX="40dp"
+            tools:layout_editor_absoluteY="432dp" />
+
+        <Spinner
+            android:id="@+id/inserirCategoria1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/inserirCategoria2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnInserirCadastro"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/botao_personalizado_sec"
+            android:text="Cadastrar"
+            android:textColor="#fff"
+            tools:layout_editor_absoluteX="161dp"
+            tools:layout_editor_absoluteY="542dp" />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

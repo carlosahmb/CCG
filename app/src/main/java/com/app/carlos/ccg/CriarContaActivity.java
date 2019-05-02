@@ -2,12 +2,13 @@ package com.app.carlos.ccg;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -22,9 +23,10 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.HashMap;
 
-public class RegistroActivity extends AppCompatActivity {
+public class CriarContaActivity extends AppCompatActivity {
 
-    MaterialEditText username, email, senhalogin;
+    MaterialEditText username, email;
+    EditText senhalogin;
     Button btnRegistrar;
     FirebaseAuth auth;
     DatabaseReference reference;
@@ -32,13 +34,14 @@ public class RegistroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.activity_criar_conta);
 
 
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
         senhalogin = findViewById(R.id.senhalogin);
         btnRegistrar = findViewById(R.id.btnRegistrar);
+        FloatingActionButton btnVoltar = findViewById(R.id.btnVoltar);
 
         auth = FirebaseAuth.getInstance();
 
@@ -49,14 +52,27 @@ public class RegistroActivity extends AppCompatActivity {
                 String txtEmail= email.getText().toString();
                 String txtSenhaLogin = senhalogin.getText().toString();
 
-                if(TextUtils.isEmpty(txtUsername) || TextUtils.isEmpty(txtEmail) || TextUtils.isEmpty(txtSenhaLogin)){
-                    Toast.makeText(RegistroActivity.this, "Todos os campos devem estar preenchidos.", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(txtUsername)){
+                    username.setError("Informe seu nome!");
+                    Toast.makeText(CriarContaActivity.this, "Todos os campos devem estar preenchidos.", Toast.LENGTH_SHORT).show();
+                } else if(TextUtils.isEmpty(txtEmail)){
+                    email.setError("Informe seu e-mail!");
+                    Toast.makeText(CriarContaActivity.this, "Todos os campos devem estar preenchidos.", Toast.LENGTH_SHORT).show();
+                } else if(TextUtils.isEmpty(txtSenhaLogin)){
+                    senhalogin.setError("Informe uma senha!");
+                    Toast.makeText(CriarContaActivity.this, "Todos os campos devem estar preenchidos.", Toast.LENGTH_SHORT).show();
                 } else if (txtSenhaLogin.length() < 6){
-                    Toast.makeText(RegistroActivity.this, "Senha muito curta, precisa mais que 6 caracteres", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CriarContaActivity.this, "Senha muito curta, precisa mais que 6 caracteres", Toast.LENGTH_LONG).show();
                 } else{
                     registrar(txtUsername, txtEmail, txtSenhaLogin);
                 }
+            }
+        });
 
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CriarContaActivity.this, LoginActivity.class));
             }
         });
     }
@@ -82,7 +98,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
-                                        Intent intent = new Intent(RegistroActivity.this, MainActivity.class);
+                                        Intent intent = new Intent(CriarContaActivity.this, MainActivity.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                         finish();
@@ -90,7 +106,7 @@ public class RegistroActivity extends AppCompatActivity {
                                 }
                             });
                         } else{
-                            Toast.makeText(RegistroActivity.this, "Você não pode se registrar com este e-mail ou senha", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CriarContaActivity.this, "Você não pode se registrar com este e-mail ou senha", Toast.LENGTH_LONG).show();
 
                         }
                     }

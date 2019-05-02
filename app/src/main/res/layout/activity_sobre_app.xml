@@ -4,46 +4,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SobreApp">
 
-    <TextView
-        android:id="@+id/textViewSobreApp"
-        android:layout_width="184dp"
-        android:layout_height="139dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+    <include
+        android:id="@+id/includesobre"
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="53dp" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="137dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.97"
-        app:srcCompat="@drawable/direitos" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:src="@drawable/voltar"
+        android:clickable="true"
+        android:elevation="5dp"
+        app:rippleColor="@color/common_google_signin_btn_text_light_pressed"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="10dp"
+        android:layout_gravity="end|bottom"
+        app:maxImageSize="35dp"/>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="108dp"
-        android:layout_height="114dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSobreApp"
-        app:srcCompat="@drawable/logo1" />
+    <LinearLayout
+        android:layout_width="390dp"
+        android:layout_height="728dp"
+        android:layout_below="@id/includesobre"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/includesobre"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/textViewSobreApp"
+            android:layout_width="184dp"
+            android:layout_height="139dp"
+            android:layout_marginTop="30dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="100dp"
+            android:layout_height="102dp"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/iconatalho" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="137dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/direitos" />
+
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

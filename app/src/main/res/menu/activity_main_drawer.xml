@@ -8,7 +8,7 @@
 
         <item
             android:id="@+id/nav_logar"
-            android:icon="@drawable/icons8mostrar48"
+            android:icon="@drawable/login"
             android:title="Logar" />
     </menu>
 </item>
@@ -26,7 +26,6 @@
             android:icon="@drawable/icons8sobre"
             android:title="Sobre App" />
     </group>
-
 
 
 </menu>
