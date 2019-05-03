@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#FFC107</color>
     <color name="hintCampo">#B6B6B6</color>
+    <color name="colorRadioButtonChecked">#FFC107</color>
 </resources>

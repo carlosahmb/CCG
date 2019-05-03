@@ -20,7 +20,7 @@
         <item
             android:id="@+id/nav_sugestao"
             android:icon="@drawable/icons8sugestao"
-            android:title="Sugestão" />
+            android:title="Fale Conosco" />
         <item
             android:id="@+id/nav_sobreApp"
             android:icon="@drawable/icons8sobre"
