@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CadastroLoja">
 
-    <include
-        android:id="@+id/includecadastro"
-        layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="53dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnVoltar"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:src="@drawable/voltar"
-        android:clickable="true"
-        android:elevation="5dp"
-        app:rippleColor="@color/common_google_signin_btn_text_light_pressed"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="10dp"
-        android:layout_gravity="end|bottom"
-        app:maxImageSize="35dp"/>
 
     <LinearLayout
         android:layout_width="392dp"
@@ -33,6 +15,27 @@
         android:padding="16dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="68dp">
+
+        <TextView
+            android:id="@+id/textCad"
+            android:layout_width="258dp"
+            android:layout_height="43dp"
+            android:gravity="center_horizontal"
+            android:text="Cadastro da Loja"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:layout_marginRight="140dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:src="@drawable/voltar"
+            app:maxImageSize="25dp"
+            app:fabSize="mini"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/inserirLoja"
@@ -124,4 +127,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -5,11 +5,12 @@
 
 <item android:title="Conta">
     <menu>
-
+<group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_logar"
             android:icon="@drawable/login"
             android:title="Logar" />
+</group>
     </menu>
 </item>
 <group android:checkableBehavior="single">
@@ -24,7 +25,7 @@
         <item
             android:id="@+id/nav_sobreApp"
             android:icon="@drawable/icons8sobre"
-            android:title="Sobre App" />
+            android:title="Sobre o CCG" />
     </group>
 
 

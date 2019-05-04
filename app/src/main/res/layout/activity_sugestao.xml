@@ -7,69 +7,64 @@
     android:layout_height="match_parent"
     tools:context=".Sugestao">
 
-    <include
-        android:id="@+id/sugestaoXml"
-        layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="53dp" />
-
-    <TextView
-        android:layout_width="258dp"
-        android:layout_height="43dp"
-        android:layout_alignStart="@+id/sugestaoXml"
-        android:layout_alignEnd="@+id/sugestaoXml"
-        android:layout_marginStart="76dp"
-        android:layout_marginEnd="59dp"
-        android:gravity="center_horizontal"
-        android:text="Fale Conosco"
-        android:textColor="@color/colorAccent"
-        android:textSize="25dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnVoltar"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_gravity="end|bottom"
-        android:clickable="true"
-        android:elevation="5dp"
-        android:src="@drawable/voltar"
-        app:maxImageSize="35dp"
-        app:rippleColor="@color/common_google_signin_btn_text_light_pressed"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="10dp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="604dp"
-        android:layout_below="@+id/sugestaoXml"
+        android:layout_height="640dp"
         android:layout_marginTop="0dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
 
+        <TextView
+            android:id="@+id/textFale"
+            android:layout_width="258dp"
+            android:layout_height="43dp"
+            android:gravity="center_horizontal"
+            android:text="Fale Conosco"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:layout_marginRight="140dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:src="@drawable/voltar"
+            app:maxImageSize="25dp"
+            app:fabSize="mini"/>
+
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/switchAnomino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:checked="false"
             android:text="Anônimo"
             tools:layout_editor_absoluteX="251dp"
             tools:layout_editor_absoluteY="157dp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/campoNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="Nome"
             android:inputType="textPersonName"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="139dp" />
 
         <EditText
-            android:id="@+id/telefone"
+            android:id="@+id/campoTelefone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:hint="Telefone"
             android:inputType="phone"
@@ -78,27 +73,34 @@
 
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginTop="10dp">
+
             <android.support.v7.widget.AppCompatRadioButton
-                android:layout_height="wrap_content"
+                android:id="@+id/radioSugestao"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:text="Sugestão"
-                android:layout_marginLeft="60dp"
-                android:theme="@style/RadioButtonTheme"/>
+                android:theme="@style/RadioButtonTheme" />
+
             <android.support.v7.widget.AppCompatRadioButton
-                android:layout_height="wrap_content"
+                android:id="@+id/radioReclamacao"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:text="Reclamação"
-                android:layout_marginLeft="60dp"
-                android:theme="@style/RadioButtonTheme"/>
+                android:theme="@style/RadioButtonTheme" />
+
             <android.support.v7.widget.AppCompatRadioButton
-                android:layout_height="wrap_content"
+                android:id="@+id/radioDenuncia"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:text="Denúncia"
-                android:layout_marginLeft="60dp"
-                android:theme="@style/RadioButtonTheme"/>
+                android:theme="@style/RadioButtonTheme" />
 
         </RadioGroup>
 
@@ -106,8 +108,8 @@
             android:id="@+id/campoTexto"
             android:layout_width="239dp"
             android:layout_height="146dp"
-            android:ems="10"
             android:layout_margin="5dp"
+            android:ems="10"
             android:gravity="start|top"
             android:hint="Digite aqui"
             android:inputType="textMultiLine"

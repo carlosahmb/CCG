@@ -6,39 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".CriarContaActivity">
 
-    <include
-        android:id="@+id/loginXml"
-        layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="53dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnVoltar"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_gravity="end|bottom"
-        android:clickable="true"
-        android:elevation="5dp"
-        android:src="@drawable/voltar"
-        app:maxImageSize="35dp"
-        app:rippleColor="@color/common_google_signin_btn_text_light_pressed"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="10dp" />
 
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="16dp"
-    android:layout_below="@id/loginXml">
+    android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Criar Conta"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textSobreCamelo"
+            android:layout_width="258dp"
+            android:layout_height="43dp"
+            android:gravity="center_horizontal"
+            android:text="Criar Conta"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:layout_marginRight="130dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:src="@drawable/voltar"
+            app:maxImageSize="25dp"
+            app:fabSize="mini"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:layout_width="match_parent"
