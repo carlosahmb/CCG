@@ -20,5 +20,12 @@
 <style name="RadioButtonTheme">
     <item name="android:colorAccent">@color/colorRadioButtonChecked</item>
 </style>
+    <style name="dialogSpot" parent="android:Theme.Material.Light.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Material.Medium</item>
+        <item name="DialogTitleText">Enviando Mensagem...</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="DialogSpotColor">@color/colorAccent</item>
+
+    </style>
 
 </resources>

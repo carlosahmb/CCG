@@ -100,7 +100,7 @@ public class CadastroLoja extends AppCompatActivity implements AdapterView.OnIte
                     }else{
                         inserirReferencia.setError("Referência muita curta!");
                     }
-                    if(txtInserirInstagram.length() >=2){
+                    if(txtInserirInstagram.length() <3){
                         reference.push().setValue(txtInserirInstagram);
                     }else{
                         inserirInstagram.setError("Instagram não é válido");
