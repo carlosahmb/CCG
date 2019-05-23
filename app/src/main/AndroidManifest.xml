@@ -36,6 +36,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".CriarContaActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ResetSenhaActivity"/>
     </application>
 
 </manifest>

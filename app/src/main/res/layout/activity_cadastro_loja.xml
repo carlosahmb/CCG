@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="392dp"
-        android:layout_height="708dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp"
@@ -34,91 +34,118 @@
             android:clickable="true"
             android:elevation="5dp"
             android:src="@drawable/voltar"
-            app:maxImageSize="25dp"
-            app:fabSize="mini"/>
+            app:fabSize="mini"
+            app:maxImageSize="25dp" />
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/inserirLoja"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Nome da Loja"
-            android:inputType="textPersonName"
-            app:met_floatingLabel="normal"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="73dp" />
+            android:layout_height="wrap_content">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/inserirBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="BOX"
-            android:inputType="number"
-            app:met_floatingLabel="normal"
-            tools:layout_editor_absoluteX="67dp"
-            tools:layout_editor_absoluteY="138dp" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/inserirNomeLoja"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Nome da Loja"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="73dp" />
+        </android.support.design.widget.TextInputLayout>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/inserirTelWhats"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Telefone WhatsApp"
-            android:inputType="phone"
-            app:met_floatingLabel="normal"
-            tools:layout_editor_absoluteX="98dp"
-            tools:layout_editor_absoluteY="209dp" />
+            android:layout_height="wrap_content">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/inserirTelFixo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Telefone Fixo"
-            android:inputType="phone"
-            app:met_floatingLabel="normal"
-            tools:layout_editor_absoluteX="97dp"
-            tools:layout_editor_absoluteY="274dp" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/inserirBox"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="BOX"
+                android:inputType="number"
+                tools:layout_editor_absoluteX="67dp"
+                tools:layout_editor_absoluteY="138dp" />
+        </android.support.design.widget.TextInputLayout>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/inserirReferencia"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Ponto de Referência"
-            android:inputType="textPersonName"
-            app:met_floatingLabel="normal"
-            tools:layout_editor_absoluteX="65dp"
-            tools:layout_editor_absoluteY="358dp" />
+            android:layout_height="wrap_content">
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/inserirInstagram"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Instagram"
-            android:inputType="textPersonName"
-            app:met_floatingLabel="normal"
-            tools:layout_editor_absoluteX="40dp"
-            tools:layout_editor_absoluteY="432dp" />
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/inserirTelWhats"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Telefone WhatsApp"
+                android:inputType="phone"
+                tools:layout_editor_absoluteX="98dp"
+                tools:layout_editor_absoluteY="209dp" />
+        </android.support.design.widget.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/inserirCategoria1"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <Spinner
-            android:id="@+id/inserirCategoria2"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/inserirTelFixo"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Telefone Fixo"
+                android:inputType="phone"
+                tools:layout_editor_absoluteX="97dp"
+                tools:layout_editor_absoluteY="274dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/inserirPontoReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Ponto de Referência"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="65dp"
+                tools:layout_editor_absoluteY="358dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/inserirInstagram"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Instagram"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="40dp"
+                tools:layout_editor_absoluteY="432dp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/inserirCategoria1"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Selecione a 1ª categoria da loja" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                android:id="@+id/inserirCategoria2"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:hint="Selecione a 2ª categoria da loja" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btnInserirCadastro"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@drawable/botao_personalizado_sec"
+            android:background="@drawable/botao_personalizado_pri"
             android:text="Cadastrar"
             android:textColor="#fff"
             tools:layout_editor_absoluteX="161dp"

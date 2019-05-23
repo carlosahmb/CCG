@@ -29,7 +29,7 @@ import dmax.dialog.SpotsDialog;
 public class Sugestao extends AppCompatActivity {
 
     String emailccg , senhaccg, nomeToast;
-    String assuntoEmail = "*Sem assunto*";
+    String assuntoEmail;
     Session session = null;
     SwitchCompat switchCompat;
     Button enviarSugestao;
@@ -80,9 +80,8 @@ public class Sugestao extends AppCompatActivity {
                     campoNome.setEnabled(true);
                     campoTelefone.setEnabled(true);
                     campoNome.setText("");
-                    campoNome.setHint("Nome");
                     campoTelefone.setText("");
-                    campoTelefone.setHint("Telefone");
+                    campoNome.requestFocus();
                 }
 
             }
@@ -134,9 +133,9 @@ public class Sugestao extends AppCompatActivity {
             }
             class RetreiveFeedTask extends AsyncTask<String, Void, String>{
 
-                String txtCampoTexto = campoTexto.getText().toString();
-                String txtCampoNome = campoNome.getText().toString();
-                String txtCampoTelefone = campoTelefone.getText().toString();
+                String txtCampoTexto = campoTexto.getText().toString().trim();
+                String txtCampoNome = campoNome.getText().toString().trim();
+                String txtCampoTelefone = campoTelefone.getText().toString().trim();
 
                 @Override
                 protected String doInBackground(String... strings) {

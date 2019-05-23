@@ -14,26 +14,4 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
-    <string-array name="lista_categoria_produto">
-        <item>Selecione uma Categoria da Loja</item>
-        <item>Automotivos</item>
-        <item>Assitência Técnica</item>
-        <item>Bolsas, Malas e Mochilas</item>
-        <item>Bonés e Acessórios</item>
-        <item>Brinquedos em Geral</item>
-        <item>Caça e Pesca</item>
-        <item>Celulares e Acessórios</item>
-        <item>Eletrônicos e Acessórios</item>
-        <item>Games e Acessórios</item>
-        <item>Informática e Acessórios</item>
-        <item>Jóias e Acessórios</item>
-        <item>Óculos e Armações</item>
-        <item>Perfumes e Cosméticos</item>
-        <item>Relógios e Acessórios</item>
-        <item>Roupas e Acessórios</item>
-        <item>Tabacaria</item>
-        <item>Tênis</item>
-        <item>Variedades</item>
-        <item>Outros</item>
-    </string-array>
 </resources>

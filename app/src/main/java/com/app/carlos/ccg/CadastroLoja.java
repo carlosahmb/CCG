@@ -1,49 +1,54 @@
 package com.app.carlos.ccg;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
-public class CadastroLoja extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import java.util.ArrayList;
 
-    MaterialEditText inserirLoja, inserirBox, inserirTelWhats, inserirTelFixo, inserirReferencia, inserirInstagram;
+
+public class CadastroLoja extends AppCompatActivity {
+
+    MaterialEditText inserirNomeLoja, inserirBox, inserirTelWhats, inserirTelFixo, inserirPontoReferencia, inserirInstagram;
     Button btnInserirCadastro;
     DatabaseReference reference;
+    FirebaseDatabase firebaseDatabase;
+    MaterialBetterSpinner spinner1, spinner2;
+    FirebaseAuth auth;
+    String usuarioId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_loja);
 
-        Spinner spinner1 = (Spinner) findViewById(R.id.inserirCategoria1);
-        Spinner spinner2 = (Spinner) findViewById(R.id.inserirCategoria2);
+         final MaterialBetterSpinner spinner1 =  findViewById(R.id.inserirCategoria1);
+         final MaterialBetterSpinner spinner2 =  findViewById(R.id.inserirCategoria2);
 
         inserirBox = findViewById(R.id.inserirBox);
         inserirInstagram = findViewById(R.id.inserirInstagram);
-        inserirLoja = findViewById(R.id.inserirLoja);
-        inserirReferencia = findViewById(R.id.inserirReferencia);
+        inserirNomeLoja = findViewById(R.id.inserirNomeLoja);
+        inserirPontoReferencia = findViewById(R.id.inserirPontoReferencia);
         inserirTelWhats = findViewById(R.id.inserirTelWhats);
         inserirTelFixo = findViewById(R.id.inserirTelFixo);
         btnInserirCadastro = findViewById(R.id.btnInserirCadastro);
         FloatingActionButton btnVoltar = findViewById(R.id.btnVoltar);
-
-        reference = FirebaseDatabase.getInstance().getReference();
+        inserirTelWhats.addTextChangedListener(MaskEditUtil.mask(inserirTelWhats, "(##)#####-####"));
+        inserirTelFixo.addTextChangedListener(MaskEditUtil.mask(inserirTelFixo, "(##)####-####"));
 
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,129 +57,123 @@ public class CadastroLoja extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        inserirBox.setText("fafs");
+        inserirInstagram.setText("fasfsa");
+        inserirNomeLoja.setText("fasf");
+        inserirPontoReferencia.setText("fsafasfsa");
+        inserirTelWhats.setText("(00)00000-0000");
+        inserirTelFixo.setText("(00)0000-0000");
+
+
         btnInserirCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txtInserirLoja = inserirLoja.getText().toString();
-                String txtInserirBox = inserirBox.getText().toString();
-                String txtInserirTelWhats = inserirTelWhats.getText().toString();
-                String txtInserirTelFixo = inserirTelFixo.getText().toString();
-                String txtInserirReferencia = inserirReferencia.getText().toString();
-                String txtInserirInstagram = inserirInstagram.getText().toString();
+                String categoriaSelecionada1 = spinner1.getText().toString().trim();
+                String categoriaSelecionada2 = spinner2.getText().toString().trim();
+                String txtInserirNomeLoja = inserirNomeLoja.getText().toString().trim();
+                String txtInserirBox = inserirBox.getText().toString().trim();
+                String txtInserirTelWhats = inserirTelWhats.getText().toString().trim();
+                String txtInserirTelFixo = inserirTelFixo.getText().toString().trim();
+                String txtInserirPontoReferencia = inserirPontoReferencia.getText().toString().trim();
+                String txtInserirInstagram = inserirInstagram.getText().toString().trim();
 
-                if(inserirLoja.length() ==0){
-                    inserirLoja.setError("Digite o nome da Loja!");
+                Loja loja = new Loja();
+                loja.setNomeLoja(txtInserirNomeLoja);
+                loja.setBox(txtInserirBox);
+                loja.setTelefoneWhats(txtInserirTelWhats);
+                loja.setTelefoneFixo(txtInserirTelFixo);
+                loja.setPontoReferencia(txtInserirPontoReferencia);
+                loja.setInstagram(txtInserirInstagram);
+                loja.setCategoriaLoja1(categoriaSelecionada1);
+                loja.setCategoriaLoja2(categoriaSelecionada2);
 
-                } else if(inserirBox.length() ==0){
+
+                if (inserirNomeLoja.equals("")) {
+                    inserirNomeLoja.setError("Digite o nome da Loja!");
+                    inserirNomeLoja.requestFocus();
+
+                } else if (inserirBox.equals("")) {
                     inserirBox.setError("Digite o número do Box!");
+                    inserirBox.requestFocus();
 
-                }else if(inserirTelWhats.length() ==0 || inserirTelWhats.length() >=10){
-                    inserirTelWhats.setError("Digite um telefone válido! Ex: 123456789");
+                } else if (inserirTelWhats.equals("")){
+                    inserirTelWhats.setError("Digite um telefoneWhats válido! Ex: 123456789");
+                    inserirTelWhats.requestFocus();
 
-                } else if(inserirTelFixo.length() ==0 || inserirTelFixo.length() >=9){
-                    inserirTelFixo.setError("Digite um telefone fixo válido! Ex: 12345678");
-
-                }else {
-                    if(txtInserirLoja.length() >0){
-                        reference.push().setValue(txtInserirLoja);
-                    }else{
-                        inserirLoja.setError("Digite o nome da Loja!");
-                    }
-                    if(txtInserirBox.length() >0){
-                        reference.push().setValue(txtInserirBox);
-                    }else{
-                        inserirBox.setError("Digite o número do Box!");
-                    }
-                    if(txtInserirTelWhats.length() ==9){
-                        reference.push().setValue(txtInserirTelWhats);
-                    }else{
-                        inserirTelWhats.setError("Digite um telefone válido! Ex: 123456789");
-                    }
-                    if(txtInserirTelFixo.length() ==8){
-                        reference.push().setValue(txtInserirTelFixo);
-                    }else{
-                        inserirTelFixo.setError("Digite um telefone fixo válido! Ex: 12345678");
-                    }
-                    if(txtInserirReferencia.length()==6){
-                        reference.push().setValue(txtInserirReferencia);
-                    }else{
-                        inserirReferencia.setError("Referência muita curta!");
-                    }
-                    if(txtInserirInstagram.length() <3){
-                        reference.push().setValue(txtInserirInstagram);
-                    }else{
-                        inserirInstagram.setError("Instagram não é válido");
+                } else {
+                    iniciarFirebase();
+                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (firebaseUser != null){
+                        usuarioId = firebaseUser.getUid();
                     }
 
+                    reference.child("Users").child(usuarioId).child("Lojas").child(loja.getBox()).setValue(loja);
+
+
+                    inserirNomeLoja.setText("");
                     inserirBox.setText("");
-                    inserirInstagram.setText("");
-                    inserirLoja.setText("");
-                    inserirReferencia.setText("");
                     inserirTelWhats.setText("");
                     inserirTelFixo.setText("");
+                    inserirPontoReferencia.setText("");
+                    inserirInstagram.setText("");
+                    inserirNomeLoja.requestFocus();
 
-                    Toast.makeText(CadastroLoja.this, "Loja Cadastrada com sucesso!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CadastroLoja.this, "Loja " + txtInserirNomeLoja + " cadastrada com sucesso!", Toast.LENGTH_LONG).show();
 
                 }
-
-
             }
+
         });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.lista_categoria_produto, android.R.layout.simple_spinner_item);
+        ArrayList<String> dadosSpinner = new ArrayList<>();
+        dadosSpinner.add("Automotivos");
+        dadosSpinner.add("Assitência Técnica");
+        dadosSpinner.add("Bolsas, Malas e Mochilas");
+        dadosSpinner.add("Bonés e Acessórios");
+        dadosSpinner.add("Brinquedos em Geral");
+        dadosSpinner.add("Caça e Pesca");
+        dadosSpinner.add("Celulares e Acessórios");
+        dadosSpinner.add("Eletrônicos e Acessórios");
+        dadosSpinner.add("Games e Acessórios");
+        dadosSpinner.add("Informática e Acessórios");
+        dadosSpinner.add("Jóias e Acessórios");
+        dadosSpinner.add("Óculos e Armações");
+        dadosSpinner.add("Perfumes e Cosméticos");
+        dadosSpinner.add("Relógios e Acessórios");
+        dadosSpinner.add("Roupas e Acessórios");
+        dadosSpinner.add("Tabacaria");
+        dadosSpinner.add("Variedades");
+        dadosSpinner.add("Outros");
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter);
-        spinner1.setOnItemSelectedListener(this);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_item, dadosSpinner);
 
-        spinner1.setAdapter(adapter);
-        spinner2.setAdapter(adapter);
-
-        reference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-    private void registrar(final String txtInserirLoja, String txtInserirBox, String txtInserirTelWhats,
-                           String txtInserirTelFixo, String txtInserirReferencia, String txtInserirInstagram){
+        spinner1.setAdapter(spinnerArrayAdapter);
+        spinner1.setOnItemSelectedListener(ouvinteSpinner);
+        spinner2.setAdapter(spinnerArrayAdapter);
+        spinner2.setOnItemSelectedListener(ouvinteSpinner);
 
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            String text = parent.getItemAtPosition(position).toString();
-            Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show();
+    AdapterView.OnItemSelectedListener ouvinteSpinner = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String itemSelecionadoSpinner1 = spinner1.getOnItemSelectedListener().toString();
+            String itemSelecionadoSpinner2 = spinner2.getOnItemSelectedListener().toString();
+            Toast.makeText(getBaseContext(), itemSelecionadoSpinner1, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), itemSelecionadoSpinner2, Toast.LENGTH_SHORT).show();
+        }
 
-    }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+        }
+    };
 
+    private void iniciarFirebase() {
+        FirebaseApp.initializeApp(CadastroLoja.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        reference = firebaseDatabase.getReference();
     }
 }
