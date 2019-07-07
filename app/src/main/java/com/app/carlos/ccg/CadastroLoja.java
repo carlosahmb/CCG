@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,16 +28,18 @@ public class CadastroLoja extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseDatabase firebaseDatabase;
     MaterialBetterSpinner spinner1, spinner2;
-    FirebaseAuth auth;
-    String usuarioId;
+    static String id_loja;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_loja);
 
-         final MaterialBetterSpinner spinner1 =  findViewById(R.id.inserirCategoria1);
-         final MaterialBetterSpinner spinner2 =  findViewById(R.id.inserirCategoria2);
+
+        final MaterialBetterSpinner spinner1 = findViewById(R.id.inserirCategoria1);
+        final MaterialBetterSpinner spinner2 = findViewById(R.id.inserirCategoria2);
+
 
         inserirBox = findViewById(R.id.inserirBox);
         inserirInstagram = findViewById(R.id.inserirInstagram);
@@ -57,12 +59,13 @@ public class CadastroLoja extends AppCompatActivity {
             }
         });
 
-        inserirBox.setText("fafs");
-        inserirInstagram.setText("fasfsa");
-        inserirNomeLoja.setText("fasf");
-        inserirPontoReferencia.setText("fsafasfsa");
-        inserirTelWhats.setText("(00)00000-0000");
-        inserirTelFixo.setText("(00)0000-0000");
+        /*inserirBox.setText("23");
+        inserirInstagram.setText("camelodromoccg");
+        inserirNomeLoja.setText("Lojas M");
+        inserirPontoReferencia.setText("Próximo a entrada");
+        inserirTelWhats.setText("(67)98119-2508");
+        inserirTelFixo.setText("(67)3443-0000");
+        */
 
 
         btnInserirCadastro.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +81,7 @@ public class CadastroLoja extends AppCompatActivity {
                 String txtInserirInstagram = inserirInstagram.getText().toString().trim();
 
                 Loja loja = new Loja();
+
                 loja.setNomeLoja(txtInserirNomeLoja);
                 loja.setBox(txtInserirBox);
                 loja.setTelefoneWhats(txtInserirTelWhats);
@@ -88,27 +92,30 @@ public class CadastroLoja extends AppCompatActivity {
                 loja.setCategoriaLoja2(categoriaSelecionada2);
 
 
-                if (inserirNomeLoja.equals("")) {
+                if (inserirNomeLoja.length() <= 1) {
                     inserirNomeLoja.setError("Digite o nome da Loja!");
                     inserirNomeLoja.requestFocus();
 
-                } else if (inserirBox.equals("")) {
+                } else if (inserirBox.length() == 0) {
                     inserirBox.setError("Digite o número do Box!");
                     inserirBox.requestFocus();
 
-                } else if (inserirTelWhats.equals("")){
+                } else if (inserirTelWhats.length() <= 13) {
                     inserirTelWhats.setError("Digite um telefoneWhats válido! Ex: 123456789");
                     inserirTelWhats.requestFocus();
 
+                } else if (spinner1.length() == 0 && spinner2.length() == 0) {
+                    spinner1.setError("Defina pelo menos uma Categoria!");
+                    spinner1.requestFocus();
                 } else {
                     iniciarFirebase();
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                    if (firebaseUser != null){
-                        usuarioId = firebaseUser.getUid();
+                    if (firebaseUser != null) {
+                        id_loja = firebaseUser.getUid();
                     }
 
-                    reference.child("Users").child(usuarioId).child("Lojas").child(loja.getBox()).setValue(loja);
-
+                    //reference.child("Users").child(id_loja).child("Lojas").push().setValue(loja);
+                    reference.child("Users").child(id_loja).child(loja.getBox()).setValue(loja);
 
                     inserirNomeLoja.setText("");
                     inserirBox.setText("");
@@ -116,6 +123,8 @@ public class CadastroLoja extends AppCompatActivity {
                     inserirTelFixo.setText("");
                     inserirPontoReferencia.setText("");
                     inserirInstagram.setText("");
+                    spinner1.setText("Selecione a 1ª categoria da loja");
+                    spinner2.setText("Selecione a 2ª categoria da loja");
                     inserirNomeLoja.requestFocus();
 
                     Toast.makeText(CadastroLoja.this, "Loja " + txtInserirNomeLoja + " cadastrada com sucesso!", Toast.LENGTH_LONG).show();
@@ -142,7 +151,6 @@ public class CadastroLoja extends AppCompatActivity {
         dadosSpinner.add("Relógios e Acessórios");
         dadosSpinner.add("Roupas e Acessórios");
         dadosSpinner.add("Tabacaria");
-        dadosSpinner.add("Variedades");
         dadosSpinner.add("Outros");
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
@@ -170,6 +178,16 @@ public class CadastroLoja extends AppCompatActivity {
 
         }
     };
+   /* private int getIndex_SpinnerItem(Spinner spinner, String item){
+        int index = 0;
+        for(int i = 0; i < spinner.getCount(); i++){
+            if(spinner.getItemAtPosition(i).equals(item)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }*/
 
     private void iniciarFirebase() {
         FirebaseApp.initializeApp(CadastroLoja.this);

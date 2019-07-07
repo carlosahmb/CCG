@@ -1,14 +1,43 @@
 package com.app.carlos.ccg;
 
+import com.google.firebase.database.Exclude;
+
 public class Loja {
-    String nomeLoja;
-    String box;
-    String telefoneWhats;
-    String telefoneFixo;
-    String pontoReferencia;
-    String instagram;
-    String categoriaLoja1;
-    String categoriaLoja2;
+     String id_loja;
+     String nomeLoja;
+     String box;
+     String telefoneWhats;
+     String telefoneFixo;
+     String pontoReferencia;
+     String instagram;
+     String categoriaLoja1;
+     String categoriaLoja2;
+     String descricaoLoja;
+     String nomeCategoriaLoja, imagemLink;
+
+
+    public String getNomeCategoriaLoja() {
+        return nomeCategoriaLoja;
+    }
+
+    public void setNomeCategoriaLoja(String nomeCategoriaLoja) {
+        this.nomeCategoriaLoja = nomeCategoriaLoja;
+    }
+
+    public String getImagemLink() {
+        return imagemLink;
+    }
+
+    public void setImagemLink(String imagemLink) {
+        this.imagemLink = imagemLink;
+    }
+
+    public String getDescricaoLoja() {
+        return descricaoLoja;
+    }
+    public void setDescricaoLoja(String descricaoLoja) {
+        this.descricaoLoja = descricaoLoja;
+    }
 
     public String getCategoriaLoja1() {
         return categoriaLoja1;
@@ -72,5 +101,17 @@ public class Loja {
 
     public void setInstagram(String instagram) {
         this.instagram = instagram;
+    }
+    @Exclude
+    public String getId_loja() {
+        return id_loja;
+    }
+    @Exclude
+    public void setId_loja(String id_loja) {
+        this.id_loja = id_loja;
+    }
+
+    public Loja(){
+
     }
 }

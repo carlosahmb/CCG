@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <android.support.design.widget.FloatingActionButton
+        <!--<android.support.design.widget.FloatingActionButton
             android:id="@+id/btnVoltar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,16 +23,16 @@
             android:elevation="5dp"
             android:src="@drawable/voltar"
             app:fabSize="mini"
-            app:maxImageSize="25dp" />
+            app:maxImageSize="25dp" />-->
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/addLoja"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="126dp"
-            android:layout_marginTop="-35dp"
             android:clickable="true"
             android:elevation="5dp"
+            android:layout_marginTop="10dp"
             app:fabCustomSize="50dp"
             app:maxImageSize="30dp"
             app:srcCompat="@drawable/addloja" />
@@ -41,17 +41,18 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-65dp"
+            android:layout_marginTop="-45dp"
             android:layout_marginRight="8dp"
+            android:textStyle="bold"
             android:text="Adicionar Loja"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerLojas"
+            android:id="@+id/recyclerLojistaId"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="58dp">
+            android:layout_marginTop="25dp">
 
         </android.support.v7.widget.RecyclerView>
 
